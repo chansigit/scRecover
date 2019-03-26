@@ -171,7 +171,7 @@ impute_nnls = function(Ic, cellid, subcount, droprate, geneid_drop,
     xx = xx[, filterid, drop = FALSE]
     ximpute = ximpute[, filterid, drop = FALSE]
   }
-  # set.seed(cellid)
+  set.seed(cellid)
   nnls = penalized(yy, penalized = xx, unpenalized = ~0,
                   positive = TRUE, lambda1 = 0, lambda2 = 0,
                   maxiter = 3000, trace = FALSE)
@@ -235,7 +235,7 @@ imputation_model8 = function(count, labeled, point, drop_thre = 0.5, Kcluster = 
     dist_cells = dist_cells + t(dist_cells)
   }else{
     print("inferring cell similarities ...")
-    # set.seed(Kcluster)
+    set.seed(Kcluster)
     neighbors_res = find_neighbors(count_hv = count_hv, labeled = FALSE, J = J,
                                    Kcluster = Kcluster, ncores = ncores)
     dist_cells = neighbors_res$dist_cells
